@@ -3,6 +3,8 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect} from 'react';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 SplashScreen.preventAutoHideAsync();
 
 const RooyLayout = () => {
@@ -26,9 +28,15 @@ const RooyLayout = () => {
   if(!fontsLoaded && !error) return null;
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
+      </Stack>
+    </GestureHandlerRootView>
+    
   ) 
 }
 
