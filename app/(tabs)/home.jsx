@@ -7,10 +7,12 @@ import EmptyState from "../../components/EmptyState";
 import VideoCard from "../../components/VideoCard";
 import { useState } from "react";
 import useAppwrite from "../../lib/useAppwrite";
-import { getAllPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 
 const Home = () => {
   const { data: posts, refetch } = useAppwrite(getAllPosts);
+  const { data: latestPosts } = useAppwrite(getLatestPosts);
+  
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = async () => {
@@ -57,7 +59,7 @@ const Home = () => {
               <Text className="text-lg font-pregular text-gray-100 mb-3">
                 Latest Videos
               </Text>
-              <Trending posts={posts ?? []} />
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}
